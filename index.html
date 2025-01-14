@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - John Doe</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: #00356e;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3 {
+            color: #222;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
+            backdrop-filter: blur(10px);
+            position: fixed; /* Fixed to remain visible during scrolling */
+            top: 0; /* Align at the very top */
+            left: 0; /* Start from the left edge */
+            right: 0; /* Extend to the right edge */
+            z-index: 1000; /* Ensure it stays above other elements */
+            padding: 10px 20px; /* Padding for spacing within the navbar */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-end; /* Align items to the right */
+            gap: 20px; /* Space between menu items */
+        }
+
+        nav ul li a {
+            color: #ffffff; /* White text for better contrast */
+            font-weight: bold;
+            font-size: 1rem;
+            text-decoration: none;
+            padding: 5px 15px; /* Larger clickable area */
+            border-radius: 4px; /* Rounded corners for links */
+            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #001351; /* Green accent on hover */
+            color: white; /* Ensure text is visible */
+            transform: scale(1.1); /* Subtle zoom effect */
+        }
+
+        /* Header Styles */
+        header {
+            background-image: radial-gradient(circle at center top, #341f65, #000000);
+            color: #b6b4b4;
+            text-align: center;
+            padding: 120px 20px;
+            position: relative;
+            overflow: hidden; /* Ensures any overflow content stays hidden */
+        }
+        
+        header h1 {
+            font-size: 3.5rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Shadow for better readability */
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin: 10px 0 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Subtle shadow effect */
+        }
+
+        header .cta-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #ffffff;
+            color: #1c0456;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+            text-decoration: none;
+        }
+
+        header .cta-button:hover {
+            background-color: #001351;
+            color: white;
+            transform: scale(1.1); /* Subtle zoom effect */
+        }
+
+        /* Section Styles */
+        section {
+            padding: 60px 0;
+        }
+
+        section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #007bff;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .bg-light {
+            font-size: 1.2rem;
+            background-color: #ffffff;
+        }
+
+        .bg-gray {
+            background-color: #f5f5f5;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .project-card h3 {
+            padding: 20px;
+            margin: 0;
+        }
+
+        .project-card p {
+            padding: 0 20px 20px;
+            color: #555;
+        }
+
+        /* Achievements */
+        .achievements-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-top: 20px;
+    }
+
+    .achievement-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .achievement-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .achievement-card h3 {
+        font-size: 1.5rem;
+        margin: 10px 0;
+        color: #222;
+    }
+
+    .achievement-card p {
+        font-size: 1rem;
+        color: #555;
+    }
+
+    /* Contact Section */
+    #contact {
+        background-color: #f4f4f4;
+        padding: 50px 20px;
+        text-align: center;
+    }
+
+    #contact h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .contact-info p {
+        margin: 10px 0;
+        font-size: 1rem;
+        color: #555;
+    }
+
+    .contact-info a {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .contact-info a:hover {
+        color: #0056b3;
+    }
+
+    /* Footer Section */
+    .footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 20px 0;
+        margin-top: 50px;
+    }
+
+    .footer-content p {
+        margin: 10px 0;
+        font-size: 0.9rem;
+    }
+
+    .footer-nav {
+        margin: 10px 0;
+    }
+
+    .footer-nav a {
+        color: #fff;
+        margin: 0 10px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.3s;
+    }
+
+    .footer-nav a:hover {
+        color: #00b35a;
+    }
+
+    .social-media a {
+        display: inline-block;
+        transition: transform 0.3s ease; /* Smooth transition for scaling */
+    }
+
+    .social-icon {
+        width: 30px;
+        height: 30px;
+        transition: transform 0.3s ease; /* Smooth scaling transition */
+    }
+
+    .social-media a:hover .social-icon {
+        transform: scale(1.2); /* Scale the icon to 120% on hover */
+    }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>Welcome to My Portfolio</h1>
+            <p>I am Pranavanesh, a passionate Application Developer with a vision to create impactful solutions.</p>
+            <a href="#contact" class="cta-button">Get in Touch</a>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="bg-light">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>
+                Hello! I’m an enthusiastic <strong>App Developer</strong> with over two years of hands-on experience in <strong>Android Studio</strong> using <strong>Java</strong> and <strong>Flutter</strong>. My passion for crafting intuitive and efficient mobile applications drives me to constantly improve my skills and stay updated with the latest technologies in the industry.
+Throughout my journey, I’ve successfully completed several projects, leveraging my expertise in both <strong>Java</strong> and <strong>Flutter</strong> to create user-friendly applications that deliver real-world value. Beyond development, I’ve had the privilege of showcasing my skills in <strong>hackathons</strong> and <strong>inter-college events</strong>, where I’ve gained invaluable experience collaborating with teams and solving complex problems under pressure.
+I’m always eager to learn, grow, and take on new challenges in app development, striving to create solutions that make a meaningful impact.
+            </p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="bg-gray">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Blood Donation App</h3>
+                    <p>Blood Donation is an application which helps the public to connect to the others when in need of blood and also has an additional feature which notifies the people who are willing to donate.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Restaurant App</h3>
+                    <p>An advanced restaurant reservation app designed for seamless dining experiences. Users can effortlessly book tables, track upcoming and past reservations, and manage personalized profiles, ensuring a streamlined and personalized service every time.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Chat Bot App</h3>
+                    <p>An AI-powered chatbot integrated with ChatGPT, designed to provide intelligent, real-time text responses to user prompts. The app includes a simple login and logout system for secure and personalized interactions.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Parking App</h3>
+                    <p>An innovative campus parking management app designed to help colleges ensure the safe and secure parking of student vehicles within the campus. It streamlines parking operations, enhancing security and organization effectively.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="bg-light">
+        <div class="container">
+            <h2>Achievements</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <h3>Smart India Hackathon</h3>
+                    <p>Participated in the prestigious hackathon and contributed to innovative problem-solving with my team.</p>
+                </div>
+                <div class="achievement-card">
+                    <h3>Team Collaborations</h3>
+                    <p>Successfully collaborated in multiple hackathons and technical events, showcasing leadership and teamwork.</p>
+                </div>
+                <div class="achievement-card">
+                    <h3>Innovative Apps</h3>
+                    <p>Developed applications that focus on solving real-world problems with a user-friendly approach.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-gray">
+        <div class="container">
+            <h2>Contact Me</h2>
+            <div class="contact-info">
+                <p><strong>Email:</strong> <a href="mailto:pranavanesh.vimalraj@gmail.com">pranavanesh.vimalraj@gmail.com</a></p>
+                <p><strong>Phone:</strong> <a href="tel:+918870330628">+91 8870330628</a></p>
+                <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/pranavanesh-v-19b88a284" target="_blank">linkedin.com/in/Pranavanesh-V</a></p>
+                <p><strong>GitHub:</strong> <a href="https://github.com/Pranavanesh-V" target="_blank">github.com/Pranavanesh-V</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 John Doe. All rights reserved.</p>
+        </div>
+        <div class="social-media">
+            <a href="https://github.com/Pranavanesh-V" target="_blank" aria-label="GitHub">
+                <img src="github.png" alt="GitHub" style="width: 100px; height: 100px; margin-right: 10px;">
+            </a>
+            <a href="https://www.linkedin.com/in/pranavanesh-v-19b88a284" target="_blank" aria-label="LinkedIn">
+                <img src="linkedin.png" alt="LinkedIn" style="width: 100px; height: 100px;">
+            </a>
+        </div>
+    </footer>
+    
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    
+</body>
+
+</html>
